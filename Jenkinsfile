@@ -7,7 +7,7 @@ pipeline {
     stage('echo environment variables') {
       steps {
         script {
-          sh `printenv`
+          sh 'printenv'
         }
       }
     }
