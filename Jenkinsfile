@@ -11,9 +11,8 @@ pipeline {
     stage('read file') {
       steps {
         script {
-          def envFile = readFile '$SUPABASE_ENV_FILE'
+          def envFile = readFile (SUPABASE_ENV_FILE)
           writeFile file: '.env', text: envFile
-
         }
       }
     }
