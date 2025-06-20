@@ -10,14 +10,20 @@ pipeline {
   stages {
     stage('source env file') {
       steps {
-        script {
-          sh '''
-            set -a
-            source $SUPABASE_ENV_FILE
-            set +a
-            echo "Environment variables loaded from .env file"
-          '''
-        }
+        ansiblePlaybook credentialsId: 'jenkins-agent-ansible-generated-key',
+            disableHostKeyChecking: true,
+            // installation: 'ansible',
+            // become: true,
+            // sudoUser: 'botir',
+            // becomeUser: 'botir',
+            colorized: true,
+            // forks: 2,
+            // startAtTask: '004',
+            // tags: DEPLOYING_STACK,
+            // vaultCredentialsId: 'external_hdd_uuid',
+            // vaultTmpPath: '',
+            inventory: 'inventory.yaml',
+            playbook: 'playbook.yaml'
       }
     }
 
