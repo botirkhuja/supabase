@@ -13,6 +13,7 @@ pipeline {
         // script {
           sh '''
             cat $SUPABASE_ENV_FILE
+            source $SUPABASE_ENV_FILE
             echo "Environment variables loaded from .env file"
           '''
         // }
