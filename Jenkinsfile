@@ -10,10 +10,13 @@ pipeline {
   stages {
     stage('source env file') {
       steps {
+        def envFile = readFile SUPABASE_ENV_FILE
+        writeFile file: '.env', text: envFile
+        // sh 'chmod 600 .env'
         // script {
           sh '''
-            cat $SUPABASE_ENV_FILE
-            source $SUPABASE_ENV_FILE
+            cat .env
+            source .env
             echo "Environment variables loaded from .env file"
           '''
         // }
