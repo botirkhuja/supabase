@@ -8,10 +8,18 @@ pipeline {
   }
 
   stages {
+    stage('read file') {
+      steps {
+        script {
+          def envFile = readFile '$SUPABASE_ENV_FILE'
+          writeFile file: '.env', text: envFile
+
+        }
+      }
+    }
     stage('source env file') {
       steps {
-        def envFile = readFile '$SUPABASE_ENV_FILE'
-        writeFile file: '.env', text: envFile
+        
         // sh 'chmod 600 .env'
         // script {
           sh '''
