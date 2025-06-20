@@ -21,7 +21,7 @@ pipeline {
         
         // sh 'chmod 600 .env'
         // script {
-          sh '''
+          sh '''#!/bin/bash
             cat .env
             source .env
             echo "Environment variables loaded from .env file"
