@@ -1,7 +1,7 @@
 ubuntu-servers:
   hosts:
     test-ubuntu:
-      ansible_host: 192.168.50.207
+      ansible_host: 192.168.50.206
       ansible_user: 'ubuntu'
       ansible_become: true
       ansible_become_method: sudo
