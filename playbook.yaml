@@ -6,7 +6,7 @@
       ansible.builtin.debug:
         msg: "Environment file path is: {{ env_file }}"
     - name: source environment file
-      ansible.builtin.shell: "source {{ env_file }}"
+      ansible.builtin.shell: "cat {{ env_file }}"
       args:
         executable: /bin/bash
       register: source_output
