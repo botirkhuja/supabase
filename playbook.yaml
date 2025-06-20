@@ -5,3 +5,11 @@
     - name: Print environment file
       ansible.builtin.debug:
         msg: "Environment file path is: {{ env_file }}"
+    - name: source environment file
+      ansible.builtin.shell: "source {{ env_file }}"
+      args:
+        executable: /bin/bash
+      register: source_output
+    - name: Print source output
+      ansible.builtin.debug:
+        msg: "Source output: {{ source_output.stdout }}"

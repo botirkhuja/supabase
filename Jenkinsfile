@@ -4,7 +4,7 @@ pipeline {
   }
 
   environment {
-    SUPABASE_ENV_FILE = credentials('REACTIVE_RESUME_ENV_FILE');
+    SUPABASE_ENV_FILE = credentials('supabase-env-file');
   }
 
   stages {
