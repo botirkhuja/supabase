@@ -2,6 +2,7 @@
   vars:
     env_file_location: "{{ lookup( 'ansible.builtin.env', 'SUPABASE_ENV_FILE') }}"
     given_directory: supabase
+    sudo_user: "{{ ansible_env.SUDO_USER | default('root') }}"
   tasks:
     - name: Copy environment file to remote host
       ansible.builtin.copy:
