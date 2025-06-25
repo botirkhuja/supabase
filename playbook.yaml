@@ -4,6 +4,13 @@
     given_directory: supabase
     sudo_user: "{{ ansible_env.SUDO_USER | default('root') }}"
   tasks:
+    - name: "Create {{ given_directory }} directory"
+      ansible.builtin.file:
+        path: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}"
+        state: directory
+        mode: '0755'  # Optional file permissions
+        owner: "{{ sudo_user }}"  # Optional ownership
+        group: "{{ sudo_user }}"  # Optional group ownership
     - name: Copy environment file to remote host
       ansible.builtin.copy:
         src: "{{ env_file_location }}"
