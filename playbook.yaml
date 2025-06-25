@@ -1,15 +1,15 @@
 - hosts: test-ubuntu
   vars:
-    env_file: "{{ lookup( 'ansible.builtin.env', 'SUPABASE_ENV_FILE') }}"
+    env_file_location: "{{ lookup( 'ansible.builtin.env', 'SUPABASE_ENV_FILE') }}"
+    given_directory: supabase
   tasks:
-    - name: Print environment file
-      ansible.builtin.debug:
-        msg: "Environment file path is: {{ env_file }}"
-    - name: source environment file
-      ansible.builtin.shell: "cat {{ env_file }}"
-      args:
-        executable: /bin/bash
-      register: source_output
-    - name: Print source output
-      ansible.builtin.debug:
-        msg: "Source output: {{ source_output.stdout }}"
+    - name: Copy environment file to remote host
+      ansible.builtin.copy:
+        src: "{{ env_file_location }}"
+        dest: "{{ ansible_env.PWD }}/docker-compose/{{given_directory}}/.env"
+        mode: '0644'  # Optional file permissions
+        owner: "{{ sudo_user }}"  # Optional ownership
+        group: "{{ sudo_user }}"  # Optional group ownership
+        force: no
+        backup: true
+
