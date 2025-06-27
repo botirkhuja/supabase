@@ -22,7 +22,7 @@
     #     backup: true
     - name: "Copy docker folder to remote host {{ given_directory }} directory"
       ansible.builtin.copy:
-        src: "docker/*"
+        src: "docker"
         dest: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}"
         mode: '0755'  # Optional file permissions
         owner: "{{ sudo_user }}"  # Optional ownership
