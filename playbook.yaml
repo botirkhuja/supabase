@@ -36,7 +36,7 @@
         group: "{{ sudo_user }}"  # Optional group ownership
     - name: Run docker compose up
       community.docker.docker_compose_v2:
-        project_src: "{{ ansible_env.PWD }}/docker-compose/docker/{{ given_directory }}"
+        project_src: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}/docker"
         state: present
       register: compose_up_result
     - name: Debug compose up result
