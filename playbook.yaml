@@ -1,4 +1,4 @@
-- hosts: test-ubuntu
+- hosts: server-one
   vars:
     env_file_location: "{{ lookup( 'ansible.builtin.env', 'SUPABASE_ENV_FILE') }}"
     given_directory: supabase
