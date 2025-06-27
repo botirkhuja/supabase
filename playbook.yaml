@@ -11,15 +11,15 @@
         mode: '0755'  # Optional file permissions
         owner: "{{ sudo_user }}"  # Optional ownership
         group: "{{ sudo_user }}"  # Optional group ownership
-    # - name: Copy environment file to remote host
-    #   ansible.builtin.copy:
-    #     src: "{{ env_file_location }}"
-    #     dest: "{{ ansible_env.PWD }}/docker-compose/{{given_directory}}/.env"
-    #     mode: '0644'  # Optional file permissions
-    #     owner: "{{ sudo_user }}"  # Optional ownership
-    #     group: "{{ sudo_user }}"  # Optional group ownership
-    #     force: no
-    #     backup: true
+    - name: Copy environment file to remote host
+      ansible.builtin.copy:
+        src: "{{ env_file_location }}"
+        dest: "{{ ansible_env.PWD }}/docker-compose/{{given_directory}}/docker/.env"
+        mode: '0644'  # Optional file permissions
+        owner: "{{ sudo_user }}"  # Optional ownership
+        group: "{{ sudo_user }}"  # Optional group ownership
+        force: no
+        backup: true
     - name: "Copy docker folder to remote host {{ given_directory }} directory"
       ansible.builtin.copy:
         src: "docker"
@@ -27,13 +27,13 @@
         mode: '0755'  # Optional file permissions
         owner: "{{ sudo_user }}"  # Optional ownership
         group: "{{ sudo_user }}"  # Optional group ownership
-    - name: Copy Docker Compose file
-      ansible.builtin.template:
-        src: "docker/docker-compose.yml.j2"
-        dest: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}/docker/docker-compose.yml"
-        mode: '0755'  # Optional file permissions
-        owner: "{{ sudo_user }}"  # Optional ownership
-        group: "{{ sudo_user }}"  # Optional group ownership
+    # - name: Copy Docker Compose file
+    #   ansible.builtin.template:
+    #     src: "docker/docker-compose.yml.j2"
+    #     dest: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}/docker/docker-compose.yml"
+    #     mode: '0755'  # Optional file permissions
+    #     owner: "{{ sudo_user }}"  # Optional ownership
+    #     group: "{{ sudo_user }}"  # Optional group ownership
     - name: Run docker compose up
       community.docker.docker_compose_v2:
         project_src: "{{ ansible_env.PWD }}/docker-compose/{{ given_directory }}/docker"
