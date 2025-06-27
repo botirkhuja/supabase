@@ -269,7 +269,7 @@ services:
       # FILE_STORAGE_BACKEND_PATH: /var/lib/storage
       TENANT_ID: stub
       # TODO: https://github.com/supabase/storage-api/issues/55
-      REGION: us-central1
+      REGION: us-central
       GLOBAL_S3_BUCKET: supabase
       GLOBAL_S3_ENDPOINT: ${GLOBAL_S3_ENDPOINT}
       GLOBAL_S3_PROTOCOL: https

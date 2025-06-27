@@ -25,7 +25,7 @@
         mode: '0644'  # Optional file permissions
         owner: "{{ sudo_user }}"  # Optional ownership
         group: "{{ sudo_user }}"  # Optional group ownership
-        force: no
+        force: true
         backup: true
     # - name: Copy Docker Compose file
     #   ansible.builtin.template:
